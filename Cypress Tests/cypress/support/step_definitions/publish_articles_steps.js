@@ -21,7 +21,7 @@ then('user will be redirected to article view', () => {
     articlePage.verifyArticleField('articleTitle' , constants.ARTICLE.title)
 })
 
-when('published article with no data', () => {
+when('didn\'t fill any field', () => {
     publishArticlePage.clickPublishButton()
 })
 
@@ -37,5 +37,5 @@ when('published article with links in the body', () => {
 
 then('links should be working', () => {
     let linkInArticle =  constants.ARTICLE_WITH_LINKS.body.split('https:')[1]
-    articlePage.visitLinkInBody(`https:${linkInArticle}`, '.w3-container')
+    articlePage.verifyLinkInBody(`https:${linkInArticle}`)
 })

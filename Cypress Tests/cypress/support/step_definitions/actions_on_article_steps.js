@@ -7,7 +7,7 @@ import UserProfile from '../pages/user_profile_page.js'
 
 const header = new Header()
 const publishArticlePage = new PublishArticle()
-const acticlePage = new ArticleView()
+const articlePage = new ArticleView()
 const userProfilePage = new UserProfile()
 
 let modifiedArticle = {        
@@ -18,7 +18,7 @@ let modifiedArticle = {
 }
 
 when('user wants to edit article', () => {
-    acticlePage.clickActionButton('editButton')
+    articlePage.clickActionButton('editButton')
 })
 
 when('publishes changes on article details', () => {
@@ -26,8 +26,8 @@ when('publishes changes on article details', () => {
 })
 
 then('article details should be updated', () => {
-    acticlePage.verifyArticleField('articleTitle' , modifiedArticle.title)
-    acticlePage.verifyArticleField('body' , modifiedArticle.body)
+    articlePage.verifyArticleField('articleTitle' , modifiedArticle.title)
+    articlePage.verifyArticleField('body' , modifiedArticle.body)
 })
 
 when('went to My Articles section', () => {
@@ -41,7 +41,8 @@ when('opened an article', () => {
 })
 
 when('user click delete button', () => {
-    acticlePage.clickActionButton('deleteButton')
+    articlePage.clickActionButton('deleteButton')
+    cy.wait(2000)
 })
 
 then('article should not be found in My Articles section', () => {

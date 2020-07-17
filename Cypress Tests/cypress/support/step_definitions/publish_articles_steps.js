@@ -7,7 +7,7 @@ import { DATA_VALIDATION_ERRORS } from '../constants.js';
 
 const header = new Header()
 const publishArticlePage = new PublishArticle()
-const acticlePage = new ArticleView()
+const articlePage = new ArticleView()
 
 when('user opened New Article page', () => {
     header.goToNewArticle()
@@ -18,7 +18,7 @@ when('user publishes article', () => {
 })
 
 then('user will be redirected to article view', () => {
-    acticlePage.verifyArticleField('articleTitle' , constants.ARTICLE.title)
+    articlePage.verifyArticleField('articleTitle' , constants.ARTICLE.title)
 })
 
 when('published article with no data', () => {
@@ -29,4 +29,13 @@ then('data validation errors appears', () => {
     for(let error in DATA_VALIDATION_ERRORS) {
         publishArticlePage.verifyDataValidationError(DATA_VALIDATION_ERRORS[error])
     }
+})
+
+when('published article with links in the body', () => {
+    publishArticlePage.publishArticle(constants.ARTICLE_WITH_LINKS)
+})
+
+then('links should be working', () => {
+    let linkInArticle =  constants.ARTICLE_WITH_LINKS.body.split('https:')[1]
+    articlePage.visitLinkInBody(`https:${linkInArticle}`, '.w3-container')
 })

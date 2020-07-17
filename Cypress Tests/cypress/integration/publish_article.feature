@@ -10,3 +10,9 @@ Feature: Publishing Articles
     And user opened New Article page
     And published article with no data
     Then data validation errors appears
+
+  Scenario: With links
+    Given user is logged in
+    And user opened New Article page
+    And published article with links in the body
+    Then links should be working

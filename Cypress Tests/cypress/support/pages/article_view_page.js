@@ -6,7 +6,7 @@ const SELECTORS = {
     articleBanner: '.banner',
     articleMeta: '.article-meta',
     editButton: '[ui-sref="app.editor({ slug: $ctrl.article.slug })"]',
-    deleteButton: '[ng-class="{disabled: $ctrl.isDeleting}"]'
+    deleteButton: '[ng-class="{disabled: $ctrl.isDeleting}"]',
 }
 
 class ArticleView{
@@ -24,7 +24,13 @@ class ArticleView{
           .should('contain', value)
     }
 
-    ver
+    verifyLinkInBody(link) {
+        cy.get(SELECTORS.body).within(() => {
+            cy.get('a')
+              .should('have.attr', 'href')
+              .and('include', link)
+        })
+    }
 }
 
 export default ArticleView;

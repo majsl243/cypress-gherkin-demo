@@ -11,6 +11,13 @@ export const ARTICLE = {
     tags: ['latin', 'lorem', 'ipsum']
 }
 
+export const ARTICLE_WITH_LINKS = {
+    title: 'Article with links',
+    shortDescription: 'This is another article',
+    body: 'Here is a link https://www.w3schools.com/tags/tag_a.asp',
+    tags: ['links']
+}
+
 export const DATA_VALIDATION_ERRORS = {
     blankTitle: 'title can\'t be blank',
     shortTitle: 'title is too short (minimum is 1 character)',

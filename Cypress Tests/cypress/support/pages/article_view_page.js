@@ -2,17 +2,29 @@ import * as constants from '../constants.js'
 
 const SELECTORS = {
     articleTitle: '[ng-bind="::$ctrl.article.title"]',
-    shortDesc: '[ng-model="$ctrl.article.body"]',
-    body: '[ng-model="$ctrl.article.body"]',
-    tags: '[ng-model="$ctrl.tagField"]',
-    publishButton: '.btn-primary'
+    body: '[ng-bind-html="::$ctrl.article.body"]',
+    articleBanner: '.banner',
+    articleMeta: '.article-meta',
+    editButton: '[ui-sref="app.editor({ slug: $ctrl.article.slug })"]',
+    deleteButton: '[ng-class="{disabled: $ctrl.isDeleting}"]'
 }
 
 class ArticleView{
-    verifyArticleTitle(title) {
-        cy.get(`${SELECTORS.articleTitle}`)
-          .should('contain', title)
+    clickActionButton(button, fromArticleHeader = true) {
+        let butonParentDiv = (fromArticleHeader) ? SELECTORS.articleBanner : SELECTORS.articleMeta
+
+        cy.get(butonParentDiv).within(() => {
+            cy.get(SELECTORS[button])
+              .click()
+        })
     }
+
+    verifyArticleField(field, value) {
+        cy.get(SELECTORS[field])
+          .should('contain', value)
+    }
+
+    ver
 }
 
 export default ArticleView;

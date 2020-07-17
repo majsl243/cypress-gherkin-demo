@@ -5,12 +5,15 @@ const SELECTORS = {
     shortDesc: '[ng-model="$ctrl.article.description"]',
     body: '[ng-model="$ctrl.article.body"]',
     tags: '[ng-model="$ctrl.tagField"]',
-    publishButton: '.btn-primary'
+    publishButton: '.btn-primary',
+    errorMessagesArea: '.error-messages',
+    errorMsg: '[ng-repeat="error in errors"]'
 }
 
 class PublishArticle{
     writeToField(field, value) {
         cy.get(SELECTORS[field])
+          .clear()
           .type(value) 
     }
 
@@ -36,6 +39,12 @@ class PublishArticle{
         this.writeToField('tags', this.prepareTags(article.tags))
 
         this.clickPublishButton()
+    }
+
+    verifyDataValidationError(error) {
+        cy.get(SELECTORS.errorMessagesArea).within(() => {
+            cy.contains(SELECTORS.errorMsg, error)
+        })
     }
 }
 

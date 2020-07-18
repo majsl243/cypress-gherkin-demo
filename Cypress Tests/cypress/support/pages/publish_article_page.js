@@ -36,7 +36,9 @@ class PublishArticle{
         this.writeToField('articleTitle', article.title)
         this.writeToField('shortDesc', article.shortDescription)
         this.writeToField('body', article.body)
-        this.writeToField('tags', this.prepareTags(article.tags))
+        if (article.tags) {
+            this.writeToField('tags', this.prepareTags(article.tags))
+        }
 
         this.clickPublishButton()
     }

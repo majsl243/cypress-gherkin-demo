@@ -9,6 +9,7 @@ const header = new Header()
 const publishArticlePage = new PublishArticle()
 const articlePage = new ArticleView()
 
+let tags = []
 when('user opened New Article page', () => {
     header.goToNewArticle()
 })
@@ -18,6 +19,11 @@ when(/user publishes article\s*"*([a-zA-Z0-9\s]*)"*/, (title) => {
     if(title) {
         let article = constants.ARTICLE
         article.title = title
+
+        if (tags) {
+            article.tags = tags
+        }
+
         publishArticlePage.publishArticle(article)
     } else {
         publishArticlePage.publishArticle()
@@ -45,4 +51,10 @@ when('published article with links in the body', () => {
 then('links should be working', () => {
     let linkInArticle =  constants.ARTICLE_WITH_LINKS.body.split('https:')[1]
     articlePage.verifyLinkInBody(`https:${linkInArticle}`)
+})
+
+when('custom tags are', (rawTags) => {
+    rawTags.hashes().forEach((tag) => {
+        tags.push(tag.tagName)
+    })
 })

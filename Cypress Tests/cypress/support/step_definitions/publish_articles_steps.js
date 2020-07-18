@@ -13,8 +13,15 @@ when('user opened New Article page', () => {
     header.goToNewArticle()
 })
 
-when('user publishes article', () => {
-    publishArticlePage.publishArticle()
+// Match article name or nothing
+when(/user publishes article\s*"*([a-zA-Z0-9\s]*)"*/, (title) => {
+    if(title) {
+        let article = constants.ARTICLE
+        article.title = title
+        publishArticlePage.publishArticle(article)
+    } else {
+        publishArticlePage.publishArticle()
+    }
 })
 
 then('user will be redirected to article view', () => {

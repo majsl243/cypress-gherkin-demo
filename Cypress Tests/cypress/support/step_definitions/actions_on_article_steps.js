@@ -17,6 +17,15 @@ let modifiedArticle = {
     tags: ['latin', 'lorem', 'ipsum']
 }
 
+// Article title can be anything
+defineParameterType({
+    name: "titleOfArticle",
+    regexp: /.+/,
+    transformer(t) {
+        return t;
+      }
+  });
+
 when('user wants to edit article', () => {
     articlePage.clickActionButton('editButton')
 })
@@ -36,8 +45,8 @@ when('went to My Articles section', () => {
     userProfilePage.goToSection(PROFILE_NAV_BAR.myArticles)
 })
 
-when('opened an article', () => {
-    userProfilePage.expandArticle(modifiedArticle.title)
+when('opened "{titleOfArticle}" article', (title) => {
+    userProfilePage.expandArticle(title)
 })
 
 when('user click delete button', () => {
@@ -45,9 +54,14 @@ when('user click delete button', () => {
     cy.wait(2000)
 })
 
-then('article should not be found in My Articles section', () => {
+then('article {titleOfArticle} should not be found in My Articles section', (title) => {
     header.goToProfile()
     cy.wait(2000)
     userProfilePage.goToSection(PROFILE_NAV_BAR.myArticles)
-    userProfilePage.verifyArticleDoesNotExisit(modifiedArticle.title)
+    
+    if (title) {
+        userProfilePage.verifyArticleDoesNotExisit(title)
+    } else {
+        userProfilePage.verifyArticleDoesNotExisit(modifiedArticle.title)
+    }
 })

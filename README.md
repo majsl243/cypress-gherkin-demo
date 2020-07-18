@@ -35,4 +35,21 @@
         - [user_profile_page.js](https://github.com/majsl243/foothill-demo/blob/master/Cypress%20Tests/cypress/support/pages/user_profile_page.js)
     - [cypress/support/constatns.js](https://github.com/majsl243/foothill-demo/blob/master/Cypress%20Tests/cypress/support/constants.js)
     - [cypress/support/urls.js](https://github.com/majsl243/foothill-demo/blob/master/Cypress%20Tests/cypress/support/urls.js)
-    
+
+## How to run?
+- To run in Browser mode: **cypress open**
+- To run happy scenarios only: **cypress:happy**
+- To run negative scenarios only: **cypress:negative**
+- To run publish articles scenarios: **cypress:publish**
+- To run edit articles scenarios: **cypress:edit**
+- To run delete articles scenarios: **cypress:delete**
+- To run post publishing validations scenarios: **cypress:post-validation**
+
+## Results:
+- [Cypress Tests/cypress/videos/]()
+    - [happyScenarios/publish_article.feature.mp4](https://github.com/majsl243/foothill-demo/blob/master/Cypress%20Tests/cypress/videos/happyScenarios/publish_article.feature.mp4)
+    - [negativeScenarios/publish_article.feature.mp4](https://github.com/majsl243/foothill-demo/blob/master/Cypress%20Tests/cypress/videos/negativeScenarios/publish_article.feature.mp4)
+    - [publish/publish_article.feature.mp4](https://github.com/majsl243/foothill-demo/blob/master/Cypress%20Tests/cypress/videos/publish/publish_article.feature.mp4)
+    - [edit/edit_articles.feature.mp4](https://github.com/majsl243/foothill-demo/blob/master/Cypress%20Tests/cypress/videos/edit/edit_articles.feature.mp4)
+    - [delete/delete_articles.feature.mp4](https://github.com/majsl243/foothill-demo/blob/master/Cypress%20Tests/cypress/videos/delete/delete_articles.feature.mp4)
+    - [post-validation/post_publish_validations.feature.mp4](https://github.com/majsl243/foothill-demo/blob/master/Cypress%20Tests/cypress/videos/post-validation/post_publish_validations.feature.mp4)

@@ -1,17 +1,17 @@
 # foothill-demo
-##Requirements:
-Write an end to end scenario to make sure that our website can publish an Article successfully.
+## Requirements:
+- Write an end to end scenario to make sure that our website can publish an Article successfully.
 
-##Base Url:
-https://demo.productionready.io/#/
+## Base Url:
+- https://demo.productionready.io/#/
 
-## Expecteations:
+## Expectations:
 - Write the test cases to cover the end to end scenario using Gherkin
 - Build the project using page object model structure.
 - share the code via (github) repository.
 
 
-##File structure:
+## File structure:
 - [Documents](https://github.com/majsl243/foothill-demo/tree/master/Documents):
     - [Publish Articles Test Plan.pdf](https://github.com/majsl243/foothill-demo/blob/master/Documents/Publish%20Articles%20Test%20Plan.pdf)
     - [Bugs Report.pdf](https://github.com/majsl243/foothill-demo/blob/master/Documents/Bugs%20report.pdf)

@@ -1,6 +1,20 @@
 {
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:publish": "cypress run --spec /Users/majdilada/Documents/foothill/foothill-demo/Cypress\\ Tests/cypress/integration/publish_article.feature --config videosFolder=cypress/videos/publish",
+    "cypress:delete": "cypress run --spec /Users/majdilada/Documents/foothill/foothill-demo/Cypress\\ Tests/cypress/integration/delete_articles.feature --config videosFolder=cypress/videos/delete",
+    "cypress:edit": "cypress run --spec /Users/majdilada/Documents/foothill/foothill-demo/Cypress\\ Tests/cypress/integration/edit_articles.feature --config videosFolder=cypress/videos/edit",
+    "cypress:post-validation": "cypress run --spec /Users/majdilada/Documents/foothill/foothill-demo/Cypress\\ Tests/cypress/integration/post_publish_validations.feature --config videosFolder=cypress/videos/post-validation",
+    "cypress:happy": "cypress run --spec /Users/majdilada/Documents/foothill/foothill-demo/Cypress\\ Tests/cypress/integration/publish_article.feature --env TAGS='@happyScenario' --config videosFolder=cypress/videos/happyScenarios",
+    "cypress:negative": "cypress run --spec /Users/majdilada/Documents/foothill/foothill-demo/Cypress\\ Tests/cypress/integration/publish_article.feature --env TAGS='@negativeScenario' --config videosFolder=cypress/videos/negativeScenarios",
+    "lint": "eslint --fix cypress/**/*.js, cypress/**/*.feature"
+  },
   "devDependencies": {
     "cypress": "^4.10.0",
-    "cypress-cucumber-preprocessor": "^2.5.3"
+    "cypress-cucumber-preprocessor": "^2.5.3",
+    "eslint": "5.15.2",
+    "eslint-plugin-cypress": "2.2.1",
+    "eslint-plugin-cypress-dev": "2.0.0",
+    "eslint-plugin-mocha": "5.3.0"
   }
 }

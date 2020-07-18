@@ -7,7 +7,7 @@
     "cypress:post-validation": "cypress run --spec /Users/majdilada/Documents/foothill/foothill-demo/Cypress\\ Tests/cypress/integration/post_publish_validations.feature --config videosFolder=cypress/videos/post-validation",
     "cypress:happy": "cypress run --spec /Users/majdilada/Documents/foothill/foothill-demo/Cypress\\ Tests/cypress/integration/publish_article.feature --env TAGS='@happyScenario' --config videosFolder=cypress/videos/happyScenarios",
     "cypress:negative": "cypress run --spec /Users/majdilada/Documents/foothill/foothill-demo/Cypress\\ Tests/cypress/integration/publish_article.feature --env TAGS='@negativeScenario' --config videosFolder=cypress/videos/negativeScenarios",
-    "lint": "eslint --fix cypress/**/*.js, cypress/**/*.feature"
+    "lint": "eslint --fix cypress/**/*.js"
   },
   "devDependencies": {
     "cypress": "^4.10.0",

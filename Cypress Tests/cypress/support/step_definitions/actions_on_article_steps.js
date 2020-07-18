@@ -1,5 +1,5 @@
-import {Given, When, Then} from 'cypress-cucumber-preprocessor/steps'
-import {PROFILE_NAV_BAR} from '../pages/user_profile_page.js'
+import { When, Then } from 'cypress-cucumber-preprocessor/steps'
+import { PROFILE_NAV_BAR } from '../pages/user_profile_page.js'
 import Header from '../pages/header.js'
 import PublishArticle from '../pages/publish_article_page.js'
 import ArticleView from '../pages/article_view_page.js'
@@ -10,58 +10,58 @@ const publishArticlePage = new PublishArticle()
 const articlePage = new ArticleView()
 const userProfilePage = new UserProfile()
 
-let modifiedArticle = {        
-    title: 'New Title',
-    shortDescription: 'Modified description',
-    body: 'This is a shorter body. You should see this if you edited your article',
-    tags: ['latin', 'lorem', 'ipsum']
+let modifiedArticle = {
+  title: 'New Title',
+  shortDescription: 'Modified description',
+  body: 'This is a shorter body. You should see this if you edited your article',
+  tags: ['latin', 'lorem', 'ipsum'],
 }
 
 // Article title can be anything
 defineParameterType({
-    name: "titleOfArticle",
-    regexp: /.+/,
-    transformer(t) {
-        return t;
-      }
-  });
-
-when('user wants to edit article', () => {
-    articlePage.clickActionButton('editButton')
+  name: 'titleOfArticle',
+  regexp: /.+/,
+  transformer (t) {
+    return t
+  },
 })
 
-when('publishes changes on article details', () => {
-    publishArticlePage.publishArticle(modifiedArticle)
+When('user wants to edit article', () => {
+  articlePage.clickActionButton('editButton')
 })
 
-then('article details should be updated', () => {
-    articlePage.verifyArticleField('articleTitle' , modifiedArticle.title)
-    articlePage.verifyArticleField('body' , modifiedArticle.body)
+When('publishes changes on article details', () => {
+  publishArticlePage.publishArticle(modifiedArticle)
 })
 
-when('went to My Articles section', () => {
-    header.goToProfile()
-    cy.wait(2000)
-    userProfilePage.goToSection(PROFILE_NAV_BAR.myArticles)
+Then('article details should be updated', () => {
+  articlePage.verifyArticleField('articleTitle', modifiedArticle.title)
+  articlePage.verifyArticleField('body', modifiedArticle.body)
 })
 
-when('opened "{titleOfArticle}" article', (title) => {
-    userProfilePage.expandArticle(title)
+When('went to My Articles section', () => {
+  header.goToProfile()
+  cy.wait(2000)
+  userProfilePage.goToSection(PROFILE_NAV_BAR.myArticles)
 })
 
-when('user click delete button', () => {
-    articlePage.clickActionButton('deleteButton')
-    cy.wait(2000)
+When('opened "{titleOfArticle}" article', (title) => {
+  userProfilePage.expandArticle(title)
 })
 
-then('article {titleOfArticle} should not be found in My Articles section', (title) => {
-    header.goToProfile()
-    cy.wait(2000)
-    userProfilePage.goToSection(PROFILE_NAV_BAR.myArticles)
-    
-    if (title) {
-        userProfilePage.verifyArticleDoesNotExisit(title)
-    } else {
-        userProfilePage.verifyArticleDoesNotExisit(modifiedArticle.title)
-    }
+When('user click delete button', () => {
+  articlePage.clickActionButton('deleteButton')
+  cy.wait(2000)
+})
+
+Then('article {titleOfArticle} should not be found in My Articles section', (title) => {
+  header.goToProfile()
+  cy.wait(2000)
+  userProfilePage.goToSection(PROFILE_NAV_BAR.myArticles)
+
+  if (title) {
+    userProfilePage.verifyArticleDoesNotExisit(title)
+  } else {
+    userProfilePage.verifyArticleDoesNotExisit(modifiedArticle.title)
+  }
 })

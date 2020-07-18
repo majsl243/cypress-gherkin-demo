@@ -1,53 +1,53 @@
 import * as constants from '../constants.js'
 
 const SELECTORS = {
-    articleTitle: '[ng-model="$ctrl.article.title"]',
-    shortDesc: '[ng-model="$ctrl.article.description"]',
-    body: '[ng-model="$ctrl.article.body"]',
-    tags: '[ng-model="$ctrl.tagField"]',
-    publishButton: '.btn-primary',
-    errorMessagesArea: '.error-messages',
-    errorMsg: '[ng-repeat="error in errors"]'
+  articleTitle: '[ng-model="$ctrl.article.title"]',
+  shortDesc: '[ng-model="$ctrl.article.description"]',
+  body: '[ng-model="$ctrl.article.body"]',
+  tags: '[ng-model="$ctrl.tagField"]',
+  publishButton: '.btn-primary',
+  errorMessagesArea: '.error-messages',
+  errorMsg: '[ng-repeat="error in errors"]',
 }
 
-class PublishArticle{
-    writeToField(field, value) {
-        cy.get(SELECTORS[field])
+class PublishArticle {
+  writeToField (field, value) {
+    cy.get(SELECTORS[field])
           .clear()
-          .type(value) 
-    }
+          .type(value)
+  }
 
-    prepareTags(tags) {
-        let commaSeparatedTags = ''
+  prepareTags (tags) {
+    let commaSeparatedTags = ''
 
-        tags.forEach((tag) => {
-            commaSeparatedTags = `${commaSeparatedTags},${tag}`
-        })    
+    tags.forEach((tag) => {
+      commaSeparatedTags = `${commaSeparatedTags},${tag}`
+    })
 
-        return commaSeparatedTags
-    }
+    return commaSeparatedTags
+  }
 
-    clickPublishButton() {
-        cy.get(SELECTORS.publishButton)
+  clickPublishButton () {
+    cy.get(SELECTORS.publishButton)
           .click()
+  }
+
+  publishArticle (article = constants.ARTICLE) {
+    this.writeToField('articleTitle', article.title)
+    this.writeToField('shortDesc', article.shortDescription)
+    this.writeToField('body', article.body)
+    if (article.tags) {
+      this.writeToField('tags', this.prepareTags(article.tags))
     }
 
-    publishArticle(article = constants.ARTICLE) {
-        this.writeToField('articleTitle', article.title)
-        this.writeToField('shortDesc', article.shortDescription)
-        this.writeToField('body', article.body)
-        if (article.tags) {
-            this.writeToField('tags', this.prepareTags(article.tags))
-        }
+    this.clickPublishButton()
+  }
 
-        this.clickPublishButton()
-    }
-
-    verifyDataValidationError(error) {
-        cy.get(SELECTORS.errorMessagesArea).within(() => {
-            cy.contains(SELECTORS.errorMsg, error)
-        })
-    }
+  verifyDataValidationError (error) {
+    cy.get(SELECTORS.errorMessagesArea).within(() => {
+      cy.contains(SELECTORS.errorMsg, error)
+    })
+  }
 }
 
-export default PublishArticle;
+export default PublishArticle

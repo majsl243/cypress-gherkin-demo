@@ -9,7 +9,7 @@ const header = new Header()
 const publishArticlePage = new PublishArticle()
 const articlePage = new ArticleView()
 
-let tags = []
+let tags
 when('user opened New Article page', () => {
     header.goToNewArticle()
 })
@@ -54,6 +54,7 @@ then('links should be working', () => {
 })
 
 when('custom tags are', (rawTags) => {
+    tags = []
     rawTags.hashes().forEach((tag) => {
         tags.push(tag.tagName)
     })

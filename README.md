@@ -44,6 +44,7 @@
 - To run edit articles scenarios: **cypress:edit**
 - To run delete articles scenarios: **cypress:delete**
 - To run post publishing validations scenarios: **cypress:post-validation**
+- To run any of the headless mode commands on fire fox add **-- --browser firefox**
 
 ## Results:
 - [Cypress Tests/cypress/videos/]()

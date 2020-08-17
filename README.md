@@ -1,4 +1,3 @@
-# foothill-demo
 ## Requirements:
 - Write an end to end scenario to make sure that our website can publish an Article successfully.
 
